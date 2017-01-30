@@ -33,7 +33,7 @@ class Slider
   
   public void setVal(int x)
   {
-    val=(x-this.x)/(float)width;
+    val=constrain((x-this.x)/(float)width,0,1);
   }
   public boolean inBounds(int x, int y)
   {

@@ -19,7 +19,7 @@ class Tool
   {
     fill(0);
     noStroke();
-    int h =(int) (85*vh - width);
+    int h =(int) (90*vh - width);
     rect(0,width,width,h);
     for(Slider s: this.controlSet)
     {

@@ -13,10 +13,11 @@ class Canvas
   public void setScale(float s)
   {
     this.scl=s;
+    this.setOffs(this.offs.x,this.offs.y);
   }
   public void setOffs(float x,float y)
   {
-    this.offs=new PVector(constrain(x,0,this.pg.width),constrain(y,0,this.pg.height));
+    this.offs=new PVector(constrain(x,0,this.pg.width - width/scl),constrain(y,0,this.pg.height - width/scl));
   }
   public void setOffsRel(float x,float y)
   {

@@ -60,10 +60,17 @@ void mousePressed()
 }
 void mouseDragged()
 {
-  if(mouseY<width)
+  if(mouseY<width && img.active)
   {
-    img.setOffsRel((float)(pmouseX-mouseX)/img.scl,(float)(pmouseY-mouseY)/img.scl);
-    img.draw();
+    if(tb.getSelTool().name.equals("Pan"))
+    {
+      img.setOffsRel((float)(pmouseX-mouseX)/img.scl,(float)(pmouseY-mouseY)/img.scl);
+      img.draw();
+    }
+    else if(tb.getSelTool().name.equals("Brush"))
+    {
+      
+    }
   }
   if(activeSlider != null)
   {
@@ -75,4 +82,10 @@ void mouseDragged()
     }
     tb.getSelTool().draw();
   }
+}
+
+void mouseReleased()
+{
+  img.setActive(false);
+  activeSlider = null;
 }
