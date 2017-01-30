@@ -6,7 +6,7 @@ class Toolbox
   {
     this.tools=new ArrayList<Tool>();
     this.tools.add(new Tool("Pan"));
-    this.tools.get(0).controlSet.put("Zoom", new Slider(0,(int)(70*vh),width,1,8));
+    this.tools.get(0).controlSet.add(new Slider("Zoom",0,(int)(70*vh),width,1,8));
     this.tools.add(new Tool("Brush"));
     this.tools.add(new Tool("Erase"));
     this.tools.add(new Tool("Fill"));
@@ -15,6 +15,10 @@ class Toolbox
   public Tool getTool(int idx)
   {
     return this.tools.get(idx);
+  }
+  public Tool getSelTool()
+  {
+    return this.tools.get(this.sel);
   }
   public int numTools()
   {

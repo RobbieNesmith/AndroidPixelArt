@@ -2,6 +2,7 @@ Canvas img;
 float scl;
 float vh;
 Toolbox tb;
+Slider activeSlider;
 
 void settings()
 {
@@ -31,11 +32,30 @@ void draw()
 }
 void mousePressed()
 {
-  if(mouseY>90*vh)
+  activeSlider = null;
+  if(mouseY<width)
+  {
+    img.setActive(true);
+  }
+  else if(mouseY>90*vh)
   {
     int item=mouseX*tb.numTools()/width;
     tb.select(item);
     tb.draw();
+  }
+  else
+  {
+    Tool cur = tb.getSelTool();
+    {
+      for(Slider s : cur.controlSet)
+      {
+        if(s.inBounds(mouseX,mouseY))
+        {
+          activeSlider = s;
+          break;
+        }
+      }
+    }
   }
 }
 void mouseDragged()
@@ -44,5 +64,15 @@ void mouseDragged()
   {
     img.setOffsRel((float)(pmouseX-mouseX)/img.scl,(float)(pmouseY-mouseY)/img.scl);
     img.draw();
+  }
+  if(activeSlider != null)
+  {
+    activeSlider.setVal(mouseX);
+    if(activeSlider.name.equals("Zoom"))
+    {
+      img.setScale(activeSlider.getVal()*((float)width/img.pg.width));
+      img.draw();
+    }
+    tb.getSelTool().draw();
   }
 }

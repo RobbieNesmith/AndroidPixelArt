@@ -1,21 +1,29 @@
 class Tool
 {
   String name;
-  HashMap<String,Slider> controlSet;
+  ArrayList<Slider> controlSet;
   public Tool(String name)
   {
     this.name=name;
-    this.controlSet = new HashMap<String,Slider>();
+    this.controlSet = new ArrayList<Slider>();
   }
   public String getName()
   {
     return this.name;
   }
+  public Slider get(int i)
+  {
+    return this.controlSet.get(i);
+  }
   public void draw()
   {
-    for(String s: controlSet.keySet())
+    fill(0);
+    noStroke();
+    int h =(int) (85*vh - width);
+    rect(0,width,width,h);
+    for(Slider s: this.controlSet)
     {
-      controlSet.get(s).draw();
+      s.draw();
     }
   }
 }

@@ -3,6 +3,7 @@ class Canvas
   PGraphics pg;
   PVector offs;
   float scl;
+  boolean active;
   public Canvas(int w, int h)
   {
     this.pg=createGraphics(w,h);
@@ -21,14 +22,18 @@ class Canvas
   {
     this.setOffs(this.offs.x+x,this.offs.y+y);
   }
+  public void setActive(boolean active)
+  {
+    this.active = active;
+  }
   public void draw()
   {
     clip(0,0,width,width);
     pg.loadPixels();
     int stx=(int)this.offs.x;
     int sty=(int)this.offs.y;
-    int edx=min((int)(stx+width/this.scl+1),pg.width);
-    int edy=min((int)(sty+width/this.scl+1),pg.height);
+    int edx=min((int)(stx+width/this.scl)+2,pg.width);
+    int edy=min((int)(sty+width/this.scl)+2,pg.height);
     float offx=this.offs.x-stx;
     float offy=this.offs.y-sty;
     noStroke();

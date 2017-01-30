@@ -4,8 +4,10 @@ class Slider
   int x, y, width;
   boolean active;
   boolean visible;
-  public Slider(int x, int y, int w)
+  String name;
+  public Slider(String name, int x, int y, int w)
   {
+    this.name = name;
     this.x=x;
     this.y=y;
     this.width=w;
@@ -13,8 +15,9 @@ class Slider
     this.maxval=1;
     this.val=0;
   }
-  public Slider(int x, int y, int w, float minval, float maxval)
+  public Slider(String name, int x, int y, int w, float minval, float maxval)
   {
+    this.name = name;
     this.x=x;
     this.y=y;
     this.width=w;
@@ -32,13 +35,9 @@ class Slider
   {
     val=(x-this.x)/(float)width;
   }
-  public void setActive(boolean active)
+  public boolean inBounds(int x, int y)
   {
-    this.active=active;
-  }
-  public void setVisible(boolean visible)
-  {
-    this.visible=visible;
+    return x > this.x && x < this.x + this.width && y > this.y && y < this.y + 10*vh;
   }
   public void draw()
   {
